@@ -1,0 +1,51 @@
+data:
+  dataset: PEMS03
+  num_sensors: 358
+  in_length: 12
+  out_length: 12
+  in_channels: 2
+  out_channels: 1
+  batch_size: 64
+
+  train_prop: 0.6
+  valid_prop: 0.2
+
+trainer:
+  early_stop: True
+  early_stop_steps: 30
+  print_frequency: 1
+
+  weight_lr: 0.002
+  weight_lr_decay_milestones: [50,60,70,80]
+  weight_lr_decay_ratio: 0.01
+  weight_decay: 0.0001
+  weight_clip_gradient: 5
+
+  arch_lr: 0.001
+  arch_lr_decay_milestones: [50,60,70,80]
+  arch_lr_decay_ratio: 0.01
+  arch_decay: 0.0003
+  arch_clip_gradient: 5
+
+model:
+  name: PEMS03_AutoTF
+  end_channels: 512
+  hidden_channels: 32
+
+  num_mlp_layers: 2
+  scale_num: 3
+
+  IsUseLinear: True
+  num_linear_layers: 4
+
+  layer_names: ['TemporalSearch', 'SpatialSearch']
+
+  num_temporal_search_node: 2
+  temporal_operations: ['DCC_2', 'Informer']
+
+  num_spatial_search_node: 4
+  spatial_operations: ['GNN_att', 'Identity']
+  num_att_layers: 1
+  num_hop: 1
+
+

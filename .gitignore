@@ -1,0 +1,6 @@
+.idea/
+.DS_Store
+src/.DS_Store
+dataset/
+src/__pycache__/
+src/model/__pycache__/
